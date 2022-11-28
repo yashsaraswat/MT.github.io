@@ -2,12 +2,6 @@
 <head>
 {{ pagedown.include_pagedown() }}
 <style>
-.flask-pagedown-input {
-}
-.flask-pagedown-preview {
-    border: 1px dotted black;
-    background-color: #f0f0f0;
-}
 body {
   border-radius: 5px;
   background-color: #FDFDFD;
@@ -49,10 +43,6 @@ body {
         </div>
 
             {{ form.hidden_tag() }}
-            <div>
-                <p>{{ form.pagedown.label }}</p>
-                {{ form.pagedown(only_input=True, rows=10, class="textarea", style='width:100%') }}
-            </div>
             <br>
             <div>{{ form.submit(class="button") }}</div>
         </form>
