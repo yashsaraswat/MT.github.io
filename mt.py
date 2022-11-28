@@ -24,15 +24,16 @@ class PageDownFormExample(FlaskForm):
 def index():
     form = PageDownFormExample()
     text = None
-    language = "en-hi" #Default
+    language = "en-fr" #Default
     if form.validate_on_submit():
         source = form.pagedown.data.lower()
         source = re.sub(r"([?.!,:;¿])", r" \1 ", source)
         source = re.sub(r'[" "]+', " ", source)
         language = str(request.form.get('lang'))
-        
-        url = "http://127.0.0.1:5000/translator/translate"
-        
+        if language == "en-fr":
+            url = "http://127.0.0.1:5000/translator/translate"
+        elif language == "fr-en":
+            url = "http://127.0.0.1:3000/translator/translate"
         headers = {"Content-Type": "application/json"}
         data = [{"src": source, "id": 100}]
         response = requests.post(url, json=data, headers=headers)
